@@ -1,0 +1,7 @@
+---
+# edited to test git
+- hosts: "{{ target | default('localhost') }}"
+  become: yes
+  roles:
+    - jenkins
+    - nodejs
