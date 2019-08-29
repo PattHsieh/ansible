@@ -1,8 +1,7 @@
 ---
 # tasks file for jenkins edited 2019/08/29
 - name: Add Jenkins repository
-  shell: wget -O /etc/yum.repos.d/jenkins.repo
-https://pkg.jenkins.io/redhat/jenkins.repo
+  shell: wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 
 - name: Import Jenkins GPG key
   rpm_key:
