@@ -1,5 +1,10 @@
 ---
 # tasks file for jenkins edited 2019/08/29
+- name: Install Java 1.8
+  yum:
+    name: java-1.8.0-openjdk.x86_64
+    state: present
+
 - name: Add Jenkins repository
   shell: wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 
@@ -13,6 +18,15 @@
     name: jenkins-2.99
     enablerepo: jenkins
     state: present
+
+- name: Modify configuration of Jenkins to use java1.8
+  lineinfile:
+    dest: /etc/sysconfig/jenkins
+    regexp: 'JAVA_CMD'
+    line: 'JENKINS_JAVA_CMD="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java"'
+    owner: root
+    group: root
+    mode: 0600
 
 - name: Start Jenkins
   service:
