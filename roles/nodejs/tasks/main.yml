@@ -1,8 +1,10 @@
 ---
 # tasks file for nodejs
 #
-- name: Installing node and npm
+- name: Install repo of nodesource
   shell: curl --silent --location https://rpm.nodesource.com/setup_12.x | sudo bash -
+
+- name: Installing node and npm
   yum:
     name: "{{ item }}"
     state: installed
